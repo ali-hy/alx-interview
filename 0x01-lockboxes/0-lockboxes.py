@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Module that determines if all the boxes can be opened. """
 
+
 def canUnlockAll(boxes):
     """ Method that determines if all the boxes can be opened. """
     n = len(boxes)
