@@ -19,7 +19,7 @@ request(url, (error, response, body) => {
           if (error) {
             reject(error);
           } else if (response.statusCode !== 200) {
-            reject(`Status: ${response.statusCode}`);
+            reject(new Error(`Status: ${response.statusCode}`));
           } else {
             const character = JSON.parse(body);
             resolve(character.name);
