@@ -13,8 +13,6 @@ request(url, (error, response, body) => {
     const film = JSON.parse(body);
     const characters = film.characters;
 
-    console.log(characters)
-
     const fetchCharacter = (characterUrl) => {
       return new Promise((resolve, reject) => {
         request(characterUrl, (error, response, body) => {
