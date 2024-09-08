@@ -13,17 +13,34 @@ request(url, (error, response, body) => {
     const film = JSON.parse(body);
     const characters = film.characters;
 
-    characters.forEach((characterUrl) => {
-      request(characterUrl, (error, response, body) => {
-        if (error) {
-          console.error('Error:', error);
-        } else if (response.statusCode !== 200) {
-          console.error('Status:', response.statusCode);
-        } else {
-          const character = JSON.parse(body);
-          console.log(character.name);
-        }
+    console.log(characters)
+
+    const fetchCharacter = (characterUrl) => {
+      return new Promise((resolve, reject) => {
+        request(characterUrl, (error, response, body) => {
+          if (error) {
+            reject(error);
+          } else if (response.statusCode !== 200) {
+            reject(`Status: ${response.statusCode}`);
+          } else {
+            const character = JSON.parse(body);
+            resolve(character.name);
+          }
+        });
       });
-    });
+    };
+
+    const fetchAllCharacters = async () => {
+      for (const characterUrl of characters) {
+        try {
+          const characterName = await fetchCharacter(characterUrl);
+          console.log(characterName);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    };
+
+    fetchAllCharacters();
   }
 });
