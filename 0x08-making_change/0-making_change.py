@@ -3,14 +3,16 @@
 
 
 def makeChange(coins, total):
-    if total <= 0:
-        return 0
+  '''Make change dynamic programming problem'''
 
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
+  if total <= 0:
+      return 0
 
-    for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
+  dp = [total + 1] * (total + 1)
+  dp[0] = 0
 
-    return dp[total] if dp[total] != float('inf') else -1
+  for coin in coins:
+      for x in range(coin, total + 1):
+          dp[x] = min(dp[x], dp[x - coin] + 1)
+
+  return dp[total] if dp[total] <= total else -1
