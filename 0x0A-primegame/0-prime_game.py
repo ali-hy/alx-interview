@@ -15,7 +15,8 @@ def sieve(n):
 
 
 def simulate_game(n):
-    """ Simulates the game for a given n, returns 1 if Maria wins, 0 if Ben wins. """
+    """ Simulates the game for a given n, returns 1 if Maria wins,
+    0 if Ben wins. """
     primes = sieve(n)
     taken = [False] * (n + 1)
     turns = 0  # Count of turns taken
