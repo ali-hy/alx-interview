@@ -19,14 +19,14 @@ def simulate_game(n: int) -> int:
     0 if Ben wins. """
     primes = sieve(n)
     taken = [False] * (n + 1)
-    turns = 0  # Count of turns taken
+    turns = 0
 
     for prime in primes:
-        if not taken[prime]:  # If this prime is still available
-            turns += 1  # Maria makes a move
+        if not taken[prime]:
+            turns += 1
             for multiple in range(prime, n + 1, prime):
-                taken[multiple] = True  # Mark multiples as taken
-    return 1 if turns % 2 == 1 else 0  # Odd turns mean Maria wins
+                taken[multiple] = True
+    return 1 if turns % 2 == 1 else 0
 
 
 def isWinner(x: int, nums: int) -> str:
