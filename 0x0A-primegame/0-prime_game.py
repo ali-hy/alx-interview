@@ -2,7 +2,7 @@
 """Prime Game"""
 
 
-def sieve(n):
+def sieve(n: int) -> list:
     """ Returns a list of primes up to n using the Sieve of Eratosthenes. """
     is_prime = [True] * (n + 1)
     p = 2
@@ -14,7 +14,7 @@ def sieve(n):
     return [p for p in range(2, n + 1) if is_prime[p]]
 
 
-def simulate_game(n):
+def simulate_game(n: int) -> int:
     """ Simulates the game for a given n, returns 1 if Maria wins,
     0 if Ben wins. """
     primes = sieve(n)
@@ -29,7 +29,7 @@ def simulate_game(n):
     return 1 if turns % 2 == 1 else 0  # Odd turns mean Maria wins
 
 
-def isWinner(x, nums):
+def isWinner(x: int, nums: int) -> str:
     maria_wins = 0
     ben_wins = 0
 
